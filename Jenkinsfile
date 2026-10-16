@@ -45,10 +45,9 @@ pipeline {
     post {
         always  { sh 'rm -f tfplan-*' }
         success { echo "Terraform applied to ${params.ENVIRONMENT}." }
-        failure { echo 'Terraform pipeline failed.' }
         aborted { echo 'Aborted at the approval step.' }
-    }
     
+
     failure {
     emailext(
         to: 'hm010685452780@gmail.com',
@@ -63,4 +62,5 @@ pipeline {
         '''
     )
 }
+    }
 }
