@@ -48,4 +48,19 @@ pipeline {
         failure { echo 'Terraform pipeline failed.' }
         aborted { echo 'Aborted at the approval step.' }
     }
+    
+    failure {
+    emailext(
+        to: 'hm010685452780@gmail.com',
+        subject: "FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+        mimeType: 'text/html',
+        body: '''
+            <h2 style="color:#d32f2f;">Jenkins Pipeline Failed</h2>
+            <p><b>Job:</b> $PROJECT_NAME</p>
+            <p><b>Build:</b> #$BUILD_NUMBER</p>
+            <p><b>Status:</b> $BUILD_STATUS</p>
+            <p><a href="$BUILD_URL/console">Open Console Output</a></p>
+        '''
+    )
+}
 }

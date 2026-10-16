@@ -17,4 +17,10 @@ provider "aws" {
   skip_metadata_api_check     = true
   s3_use_path_style           = true
 
+  endpoints {
+    ec2      = var.aws_endpoint
+    elbv2    = var.aws_endpoint
+    dynamodb = var.aws_endpoint
+    s3       = var.aws_endpoint
+  }
 }

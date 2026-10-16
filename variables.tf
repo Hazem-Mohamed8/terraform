@@ -1,11 +1,20 @@
-
+variable "aws_endpoint" {
+  type    = string
+  default = "http://floci:4566"
+}
 
 variable "environment" {
-  type        = string
-  description = "Environment name (dev, stage, prod)"
+  type = string
 }
 
 variable "vpc_cidr" {
-  type        = string
-  description = "CIDR block for the VPC"
+  type = string
+}
+
+variable "azs" {
+  type = list(string)
+}
+
+variable "public_subnet_cidrs" {
+  type = list(string)
 }
